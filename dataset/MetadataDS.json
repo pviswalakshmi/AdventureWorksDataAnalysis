@@ -1,0 +1,44 @@
+{
+	"name": "MetadataDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_metacontainer": {
+				"type": "string"
+			},
+			"p_metafolder": {
+				"type": "string"
+			},
+			"p_metafile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_metafile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().p_metafolder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().p_metacontainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
